@@ -25,8 +25,8 @@ public class ClientDetailServiceImpl implements ClientDetailsService {
 		baseClientDetails.setAuthorizedGrantTypes(
 				Arrays.asList("refresh_token", "authorization_code", "password", "client_credentials"));
 		baseClientDetails.setScope(Arrays.asList("READ", "WRITE"));
-		baseClientDetails.setAccessTokenValiditySeconds(30);
-		baseClientDetails.setRefreshTokenValiditySeconds(3600);
+		baseClientDetails.setAccessTokenValiditySeconds(43200);
+		baseClientDetails.setRefreshTokenValiditySeconds(86400);
 		return baseClientDetails;
 	}
 

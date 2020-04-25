@@ -29,6 +29,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import com.example.model.AuthUser;
 import com.example.service.ClientDetailServiceImpl;
 import com.example.service.UserDetailsServiceImpl;
 
@@ -94,8 +95,10 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter implements
 
 			@Override
 			public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+				AuthUser authUser = (AuthUser)authentication.getPrincipal();
 				Map<String, Object> additionalInfo = new HashMap<>();
 				additionalInfo.put("expires", accessToken.getExpiration().toGMTString());
+				additionalInfo.put("additionalInfo", authUser.getAdditionaInfo());
 				((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
 				return accessToken;
 			}

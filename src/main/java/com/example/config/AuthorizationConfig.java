@@ -98,7 +98,7 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter implements
 				AuthUser authUser = (AuthUser)authentication.getPrincipal();
 				Map<String, Object> additionalInfo = new HashMap<>();
 				additionalInfo.put("expires", accessToken.getExpiration().toGMTString());
-				additionalInfo.put("additionalInfo", authUser.getAdditionaInfo());
+				additionalInfo.put("memberUuid", authUser.getMemberUuid());
 				((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
 				return accessToken;
 			}
@@ -119,7 +119,6 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter implements
 	              .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 	              .and()
 	              .httpBasic()
-//	              .realmName(securityRealm)
 	              .and()
 	              .csrf()
 	              .disable();

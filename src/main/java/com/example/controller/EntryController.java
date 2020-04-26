@@ -1,11 +1,11 @@
 package com.example.controller;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.model.AuthUser;
 
 @RestController
 public class EntryController {
@@ -16,12 +16,8 @@ public class EntryController {
 		return princpal;
 	}
 
-	@GetMapping("/getMemberUuid")
-	public Map<String, String> getMemberUuid(Principal princpal) {
-		System.out.println("getMemberUuid");
-		Map<String, String> map = new HashMap<>();
-		map.put("application", "maestro-be-in-express");
-		map.put("memberUuid", "memberUuid");
-		return map;
+	@GetMapping("/getMemberByMemberUuid")
+	public Principal getMemberUuid(Principal princpal) {
+		return  princpal;
 	}
 }
